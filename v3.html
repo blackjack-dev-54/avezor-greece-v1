@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avezor: недвижимость в Греции</title>
+<meta name="description" content="Avezor: 4 749 объектов на продажу и 81 новостройка в Греции. 0% комиссии для покупателей новостроек, юридическое сопровождение, покупка онлайн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f4f4f2;
+  --blush: #fdecea;
+  --deep: #1b1b1b;
+  --ink: #1b1b1b;
+  --muted: #5a5a5a;
+  --accent: #cf1409;
+  --accent-press: #b31108;
+  --on-red-soft: rgba(255,255,255,.16);
+
+  --t-xl: clamp(64px, 8vw, 124px);
+  --t-l: clamp(40px, 4.2vw, 64px);
+  --t-m: 26px;
+  --t-b: 18px;
+  --t-s: 14px;
+
+  --r-l: 36px;
+  --r-m: 24px;
+  --pill: 999px;
+  --m: 32px;
+  --gap: 24px;
+  --section: 160px;
+  --ease: cubic-bezier(.2, .7, .1, 1);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Manrope", system-ui, sans-serif; font-size: var(--t-b); line-height: 1.55; font-weight: 500;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; }
+p { max-width: 62ch; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+button, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.on-red :focus-visible { outline-color: #fff; }
+::selection { background: var(--accent); color: #fff; }
+
+.wrap { padding: 0 var(--m); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
+.h2 { font-size: var(--t-l); font-weight: 800; line-height: 1.02; letter-spacing: -.035em; }
+.lead { font-size: var(--t-m); line-height: 1.32; font-weight: 600; letter-spacing: -.012em; }
+
+/* One button family: fully round. */
+.pill {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px;
+  border: 0; border-radius: var(--pill); cursor: pointer; text-decoration: none; font-weight: 700; font-size: var(--t-b);
+  background: var(--accent); color: #fff; transition: background-color .2s, transform .2s var(--ease), color .2s;
+}
+.pill:hover { background: var(--accent-press); transform: translateY(-2px); }
+.pill:active { transform: translateY(0) scale(.98); }
+.pill--white { background: #fff; color: var(--accent); }
+.pill--white:hover { background: #fff; color: var(--accent-press); }
+.pill--soft { background: var(--surface); color: var(--ink); }
+.pill--soft:hover { background: #e9e9e6; }
+.pill--glass { background: var(--on-red-soft); color: #fff; }
+.pill--glass:hover { background: rgba(255,255,255,.26); }
+.arrow { width: 18px; height: 18px; flex: 0 0 auto; transition: transform .25s var(--ease); }
+a:hover .arrow, button:hover .arrow { transform: translateX(4px); }
+.tlink { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; transition: text-underline-offset .2s, color .2s; }
+.tlink:hover { text-underline-offset: 3px; color: var(--accent); }
+
+/* ---------- Hero: a full-bleed view that changes slowly ---------- */
+.hero { position: relative; height: 100svh; min-height: 780px; color: #fff; overflow: hidden; background: #2a3440; border-radius: 0 0 var(--r-l) var(--r-l); }
+.hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.6s ease; transform: scale(1.04); }
+.hero__media img.is-on { opacity: 1; animation: drift 14s linear both; }
+@keyframes drift { from { transform: scale(1.04); } to { transform: scale(1.11); } }
+.hero__scrim { position: absolute; inset: 0 38% 0 0; /* taste-skill-ignore: neutral scrim under text */ background: linear-gradient(90deg, rgba(10,12,14,.6), rgba(10,12,14,0)); pointer-events: none; }
+.hero__scrim--top { inset: 0 0 auto 0; height: 170px; /* taste-skill-ignore: neutral scrim under text */ background: linear-gradient(180deg, rgba(10,12,14,.45), rgba(10,12,14,0)); }
+.hero__scrim--cards { inset: auto 0 0 auto; width: 46%; height: 360px; /* taste-skill-ignore: neutral scrim under text */ background: radial-gradient(90% 100% at 100% 100%, rgba(10,12,14,.55), rgba(10,12,14,0)); }
+
+.bar { position: absolute; z-index: 3; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 40px; padding: 24px var(--m); }
+.bar__logo img { width: 116px; height: auto; }
+.bar__nav { display: flex; gap: 6px; }
+.bar__nav a { text-decoration: none; font-weight: 700; padding: 10px 16px; border-radius: var(--pill); transition: background-color .2s; }
+.bar__nav a:hover { background: rgba(255,255,255,.18); }
+.bar__end { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+.langs { display: flex; background: rgba(20,22,24,.42); border-radius: var(--pill); padding: 4px; }
+.langs button { background: none; border: 0; border-radius: var(--pill); padding: 8px 14px; cursor: pointer; font-weight: 700; color: #fff; transition: background-color .2s, color .2s; }
+.langs button[aria-pressed="true"] { background: #fff; color: var(--ink); }
+
+.hero__body { position: absolute; z-index: 2; left: var(--m); bottom: 14vh; width: min(60vw, 900px); }
+.hero h1 { font-size: var(--t-xl); font-weight: 800; line-height: .95; letter-spacing: -.05em; max-width: 9em; }
+.hero__sub { margin-top: 28px; max-width: 30em; }
+.search { margin-top: 40px; display: flex; align-items: stretch; background: #fff; color: var(--ink); border-radius: var(--pill); padding: 8px; width: min(100%, 780px); }
+.search__field { flex: 1 1 0; min-width: 0; padding: 6px 22px; display: flex; flex-direction: column; justify-content: center; border-radius: var(--pill); transition: background-color .2s; }
+.search__field:hover { background: var(--surface); }
+.search__field label { font-size: var(--t-s); color: var(--muted); font-weight: 600; }
+.search__field select {
+  appearance: none; border: 0; background: transparent; padding: 0 24px 2px 0; cursor: pointer; font-weight: 700;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231b1b1b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 2px center;
+}
+.search .pill { min-height: 64px; padding: 0 28px; flex: 0 0 auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; list-style: none; padding: 0; }
+.chips li { background: rgba(20,22,24,.5); border-radius: var(--pill); padding: 10px 18px; font-weight: 700; }
+
+.hero__cards { position: absolute; z-index: 2; right: var(--m); bottom: var(--m); }
+.hero__cards p { display: inline-block; font-weight: 700; margin-bottom: 12px; padding: 8px 16px; border-radius: var(--pill); background: rgba(20,22,24,.55); }
+.hero__cards ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; }
+.hcard { width: 248px; display: block; text-decoration: none; color: var(--ink); background: #fff; border-radius: var(--r-m); overflow: hidden; transition: transform .3s var(--ease); }
+.hcard:hover { transform: translateY(-4px); }
+.hcard__img { position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
+.hcard__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.hcard:hover .hcard__img img { transform: scale(1.05); }
+.hcard__price { position: absolute; left: 10px; bottom: 10px; background: var(--accent); color: #fff; border-radius: var(--pill); padding: 6px 12px; font-weight: 800; font-size: var(--t-s); }
+.hcard__bar { height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; font-size: var(--t-s); font-weight: 700; gap: 8px; }
+.hcard__bar span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- Strengths ---------- */
+.why { padding-top: var(--section); }
+.why__head { grid-column: 1 / 13; display: flex; justify-content: space-between; align-items: end; gap: 48px; margin-bottom: 40px; }
+.why__head p { max-width: 46ch; }
+.bento { grid-column: 1 / 13; display: grid; grid-template-columns: 1.25fr 1fr 1fr; grid-auto-rows: minmax(270px, auto); gap: 16px; }
+.tile { border-radius: var(--r-l); padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; transition: transform .35s var(--ease); }
+.tile:hover { transform: translateY(-4px); }
+.tile__big { font-size: var(--t-xl); font-weight: 800; letter-spacing: -.055em; line-height: .9; }
+.tile__big--word { font-size: var(--t-l); letter-spacing: -.04em; }
+.tile h3 { font-size: var(--t-m); font-weight: 800; line-height: 1.2; letter-spacing: -.015em; }
+.tile p { margin-top: 8px; }
+.tile--red { background: var(--accent); color: #fff; grid-row: span 2; }
+.tile--blush { background: var(--blush); }
+.tile--blush .tile__big { color: var(--accent); }
+.tile--deep { background: var(--deep); color: #fff; }
+.tile--grey { background: var(--surface); }
+.tile--photo { position: relative; overflow: hidden; color: #fff; padding: 0; }
+.tile--photo img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.tile--red .tile__pic { border-radius: var(--r-m); overflow: hidden; aspect-ratio: 4 / 3; }
+.tile--red .tile__pic img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- New builds: a track of real cards ---------- */
+.new { padding-top: var(--section); }
+.new__head { display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 48px; margin-bottom: 40px; }
+.new__head p { max-width: 44ch; }
+.new__ctrl { display: flex; gap: 10px; align-items: center; }
+.round { width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--surface); cursor: pointer; display: grid; place-items: center; transition: background-color .2s, transform .2s var(--ease); }
+.round:hover { background: #e9e9e6; transform: scale(1.05); }
+.track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--m) - 3 * 20px) / 4); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--m); padding: 0 var(--m) 12px; scrollbar-width: none; }
+.track::-webkit-scrollbar { display: none; }
+.card { scroll-snap-align: start; text-decoration: none; color: var(--ink); display: block; }
+.card__pic { position: relative; aspect-ratio: 4 / 4.4; border-radius: var(--r-l); overflow: hidden; background: var(--surface); }
+.card__pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.card:hover .card__pic img { transform: scale(1.05); }
+.card__price { position: absolute; left: 16px; bottom: 16px; background: #fff; border-radius: var(--pill); padding: 10px 16px; font-weight: 800; }
+.card__gv { position: absolute; right: 16px; top: 16px; background: var(--accent); color: #fff; border-radius: var(--pill); padding: 8px 14px; font-weight: 700; font-size: var(--t-s); }
+.card h3 { margin-top: 16px; font-size: var(--t-m); font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+.card p { color: var(--muted); margin-top: 4px; }
+
+/* ---------- Budget: the live thing ---------- */
+.budget { padding-top: var(--section); }
+.budget__head { grid-column: 1 / 13; display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 40px; }
+.budget__head p { max-width: 46ch; }
+.steps { grid-column: 1 / 5; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.step { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 64px; padding: 0 24px; border: 0; border-radius: var(--pill); background: var(--surface); cursor: pointer; text-align: left; font-weight: 700; transition: background-color .25s, color .25s, transform .25s var(--ease); }
+.step:hover { transform: translateX(6px); background: #ebebe8; }
+.step span:last-child { color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; }
+.step[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.step[aria-pressed="true"] span:last-child { color: #fff; }
+.result { grid-column: 5 / 13; background: var(--blush); border-radius: var(--r-l); padding: 40px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: stretch; min-height: 520px; }
+.result__n { font-size: var(--t-xl); font-weight: 800; letter-spacing: -.055em; line-height: .9; color: var(--accent); font-variant-numeric: tabular-nums; }
+.result__noun { font-size: var(--t-m); font-weight: 800; margin-top: 6px; }
+.result__ex { margin-top: 28px; }
+.result__gv { margin-top: 10px; color: var(--muted); }
+.result__text { display: flex; flex-direction: column; }
+.result__text .pill { margin-top: auto; align-self: flex-start; }
+.result__pic { position: relative; border-radius: var(--r-m); overflow: hidden; min-height: 100%; }
+.result__pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s ease; }
+.result__pic img.is-on { opacity: 1; }
+
+/* ---------- How it works: a dark field ---------- */
+.how { margin-top: var(--section); background: var(--deep); color: #fff; border-radius: var(--r-l); margin-left: 16px; margin-right: 16px; padding: 120px calc(var(--m) - 16px + 24px) 120px; }
+.how__head { grid-column: 1 / 13; display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 64px; }
+.how__head p { max-width: 40ch; color: #d6d6d6; }
+.how__step { align-self: start; }
+.how__step.s1 { grid-column: 1 / 6; }
+.how__step.s2 { grid-column: 6 / 10; margin-top: 120px; }
+.how__step.s3 { grid-column: 10 / 13; margin-top: 240px; }
+.how__step figure { margin: 0 0 20px; border-radius: var(--r-m); overflow: hidden; background: #333; }
+.how__step.s1 figure { aspect-ratio: 4 / 3; }
+.how__step.s2 figure { aspect-ratio: 1; }
+.how__step.s3 figure { aspect-ratio: 3 / 4; }
+.how__step img { width: 100%; height: 100%; object-fit: cover; }
+.how__step p { max-width: 40ch; color: #e6e6e6; }
+.how__step strong { color: #fff; font-weight: 800; }
+
+/* ---------- Districts ---------- */
+.areas { padding-top: var(--section); }
+.areas__head { grid-column: 1 / 13; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: end; gap: 32px; }
+.areas__head p { max-width: 44ch; }
+.area { position: relative; border-radius: var(--r-l); overflow: hidden; color: #fff; text-decoration: none; min-height: 300px; display: block; }
+.area img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.area:hover img { transform: scale(1.05); }
+.area__label { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: #fff; color: var(--ink); border-radius: var(--r-m); padding: 14px 18px; }
+.area__label b { font-size: var(--t-m); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.area__label span { color: var(--muted); font-weight: 600; white-space: nowrap; }
+.areas__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: 300px 300px; gap: 16px; }
+.areas__grid .area:first-child { grid-row: span 2; }
+.areas__grid .area:nth-child(4) { grid-column: span 2; }
+.areas__foot { margin-top: 28px; }
+
+/* ---------- FAQ ---------- */
+.faq { padding-top: var(--section); align-items: start; }
+.faq__text { grid-column: 1 / 5; position: sticky; top: 40px; }
+.faq__text p { margin-top: 20px; }
+.faq__contacts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.faq__list { grid-column: 6 / 13; display: flex; flex-direction: column; gap: 12px; }
+details { background: var(--surface); border-radius: var(--r-m); padding: 22px 28px; transition: background-color .25s; }
+details:hover { background: #ededea; }
+details[open] { background: var(--blush); }
+summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; font-size: var(--t-b); font-weight: 800; line-height: 1.35; }
+summary::-webkit-details-marker { display: none; }
+.plus { position: relative; width: 36px; height: 36px; flex: 0 0 auto; border-radius: 50%; background: #fff; transition: transform .3s var(--ease); }
+.plus::before, .plus::after { content: ""; position: absolute; left: 11px; top: 17px; width: 14px; height: 2px; border-radius: 2px; background: var(--ink); }
+.plus::after { transform: rotate(90deg); transition: transform .3s var(--ease); }
+details[open] .plus::after { transform: rotate(0); }
+details p { margin-top: 12px; max-width: 60ch; }
+
+/* ---------- Closing ---------- */
+.close { margin: var(--section) 16px 0; background: var(--accent); color: #fff; border-radius: var(--r-l); padding: 72px calc(var(--m) - 16px + 24px); }
+.close__text { grid-column: 1 / 8; align-self: center; }
+.close__text p { margin-top: 24px; max-width: 34em; }
+.close__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+.close__pic { grid-column: 9 / 13; }
+.close__pic .arch { aspect-ratio: 4 / 5; }
+.close__pic .arch img { opacity: 1; animation: none; }
+
+/* ---------- Footer: a photograph beside the menu ---------- */
+.foot { margin: 16px; display: grid; grid-template-columns: 5fr 7fr; gap: 16px; min-height: 620px; }
+.foot__pic { border-radius: var(--r-l); overflow: hidden; }
+.foot__pic img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 55%; }
+.foot__panel { background: var(--deep); color: #fff; border-radius: var(--r-l); padding: 48px 48px 32px; display: flex; flex-direction: column; }
+.foot__panel > img { width: 104px; height: auto; }
+.foot__nav { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; }
+.foot__nav a { display: inline-block; font-size: var(--t-m); font-weight: 800; letter-spacing: -.02em; text-decoration: none; padding: 4px 0; transition: transform .3s var(--ease), color .2s; }
+.foot__nav a:hover { transform: translateX(8px); color: #ffb3ad; }
+.foot__info { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
+.foot__info .pill { background: rgba(255,255,255,.1); color: #fff; }
+.foot__info .pill:hover { background: rgba(255,255,255,.2); }
+.foot__legal { margin-top: auto; padding-top: 40px; font-size: var(--t-s); color: #bdbdbd; }
+.foot__legal p + p { margin-top: 6px; max-width: 80ch; }
+
+/* ---------- Entrances ---------- */
+.js .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .9s var(--ease); transition-delay: var(--d, 0ms); }
+.js .rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
+  .js .rv { opacity: 1; transform: none; }
+}
+
+/* Desktop is the brief; below it the page stays readable. */
+@media (max-width: 1100px) {
+  :root { --m: 20px; --gap: 16px; --section: 104px; --t-m: 22px; }
+  .bar__nav { display: none; }
+  .hero__text, .hero__pic, .why__head, .bento, .budget__head, .steps, .result, .how__head, .how__step, .areas__head, .faq__text, .faq__list, .close__text, .close__pic { grid-column: 1 / -1 !important; }
+  .hero__body { width: auto; right: var(--m); bottom: 300px; }
+  .hero__cards { left: var(--m); }
+  .hcard { width: auto; flex: 1; }
+  .search { flex-wrap: wrap; }
+  .bento { margin-top: 32px; grid-template-columns: 1fr 1fr; }
+  .why__head { flex-direction: column; align-items: start; }
+  .budget__head, .how__head, .areas__head { flex-direction: column; align-items: start; }
+  .new__head { grid-template-columns: 1fr auto; }
+  .new__head p { grid-column: 1 / -1; grid-row: 2; }
+  .result { margin-top: 16px; grid-template-columns: 1fr; }
+  .result__pic { min-height: 280px; }
+  .how__step { margin-top: 40px !important; }
+  .areas__grid { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: 300px; }
+  .areas__grid .area:first-child { grid-row: auto; grid-column: span 2; }
+  .faq__text { position: static; margin-bottom: 32px; }
+  .close__pic { margin-top: 40px; }
+  .foot__cols { grid-template-columns: 1fr 1fr; }
+  .track { grid-auto-columns: 70%; }
+}
+@media (max-width: 600px) {
+  .hero__cards { display: none; }
+  .hero__body { bottom: 40px; }
+  .foot { grid-template-columns: 1fr; margin: 16px 0; }
+  .foot__pic { height: 40svh; }
+  .foot__panel { padding: 32px var(--m); }
+  .foot__nav { grid-template-columns: 1fr; }
+  .search { flex-wrap: wrap; border-radius: var(--r-m); }
+  .search__field { flex-basis: 100%; padding: 8px 14px; }
+  .search .pill { width: 100%; justify-content: center; }
+  .bar__end .pill { display: none; }
+  .bento { grid-template-columns: 1fr; }
+  .tile--red { grid-row: auto; }
+  .tile { grid-column: auto !important; }
+  .areas__grid { grid-template-columns: 1fr; }
+  .areas__grid .area:first-child, .areas__grid .area:nth-child(4) { grid-column: auto; }
+  .track { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: 1fr 1fr; overflow: visible; }
+  .track .card:nth-child(n+5) { display: none; }
+  .new__ctrl .round { display: none; }
+  .card h3 { font-size: var(--t-b); }
+  .tile h3 { font-size: var(--t-b); }
+  .lead { font-size: var(--t-b); }
+  details { background: none; padding: 16px 0; border-radius: 0; }
+  details[open], details:hover { background: none; }
+  .plus { display: none; }
+  .new__head { grid-template-columns: 1fr; gap: 16px; }
+  .how, .close, .foot { margin-left: 0; margin-right: 0; padding-left: var(--m); padding-right: var(--m); }
+  .foot__cols { grid-template-columns: 1fr; }
+  .foot__legal { flex-direction: column; }
+  .foot__legal p:last-child { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="hero__media" data-hero>
+    <img class="is-on" src="assets/hero-current.jpg" width="2560" height="1707" alt="Кальдера Санторини: белые дома над морем" data-ta="alt.hero1">
+    <img src="assets/listings/21-1.jpg" width="1280" height="706" alt="Жилой дом V by Estia с закруглёнными террасами" data-ta="alt.p1">
+    <img src="assets/listings/72-1.jpg" width="1280" height="720" alt="Бассейн виллы на острове Кеа на закате" data-ta="alt.hero3">
+    <img src="assets/listings/19-0.jpg" width="1280" height="706" alt="Белый дом Voula Waves с волнистыми балконами" data-ta="alt.p2">
+  </div>
+  <div class="hero__scrim"></div>
+  <div class="hero__scrim hero__scrim--top"></div>
+  <div class="hero__scrim hero__scrim--cards"></div>
+
+  <div class="bar">
+    <a class="bar__logo" href="#top" aria-label="Avezor"><img src="assets/white-logo.svg" width="87" height="28" alt="Avezor"></a>
+    <nav class="bar__nav" aria-label="Main">
+      <a href="https://avezor.gr/buy" data-t="nav.buy">Купить</a>
+      <a href="#new" data-t="nav.new">Новостройки</a>
+      <a href="https://avezor.gr/rent" data-t="nav.rent">Аренда</a>
+      <a href="#budget">Golden Visa</a>
+      <a href="https://avezor.gr/about" data-t="nav.about">О компании</a>
+    </nav>
+    <div class="bar__end">
+      <div class="langs" role="group" aria-label="Language">
+        <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="el" aria-pressed="false">EL</button>
+      </div>
+      <a class="pill" href="#ask" data-t="nav.cta">Консультация</a>
+    </div>
+  </div>
+
+  <div class="hero__body">
+    <h1 class="rv" data-t="hero.h1">Недвижимость в Греции</h1>
+    <p class="hero__sub lead rv" style="--d:90ms" data-t="hero.sub">4 749 объектов на продажу и 81 новостройка. Юристы Avezor ведут сделку от первого показа до ключей.</p>
+    <form class="search rv" style="--d:180ms" action="https://avezor.gr/buy" method="get">
+      <div class="search__field">
+        <label for="f-where" data-t="s.where">Где</label>
+        <select id="f-where" name="city">
+          <option value="" data-t="s.where0">Вся Греция</option>
+          <option value="athens" data-t="s.where1">Афины и Аттика</option>
+          <option value="thessaloniki" data-t="s.where2">Салоники</option>
+          <option value="crete" data-t="s.where3">Крит</option>
+          <option value="islands" data-t="s.where4">Острова</option>
+        </select>
+      </div>
+      <div class="search__field">
+        <label for="f-what" data-t="s.what">Что</label>
+        <select id="f-what" name="objectType">
+          <option value="" data-t="s.what0">Любой тип</option>
+          <option value="apartment" data-t="s.what1">Квартира</option>
+          <option value="detached_house" data-t="s.what2">Дом</option>
+          <option value="villa" data-t="s.what3">Вилла</option>
+          <option value="plot" data-t="s.what4">Участок</option>
+        </select>
+      </div>
+      <div class="search__field">
+        <label for="f-budget" data-t="s.budget">Бюджет</label>
+        <select id="f-budget" name="totalPriceMax">
+          <option value="" data-n="4749">Любой</option>
+          <option value="150000" data-n="1435">до 150 000 €</option>
+          <option value="250000" data-n="2337">до 250 000 €</option>
+          <option value="400000" data-n="3146">до 400 000 €</option>
+          <option value="800000" data-n="4031">до 800 000 €</option>
+          <option value="1500000" data-n="4444">до 1 500 000 €</option>
+        </select>
+      </div>
+      <button class="pill" type="submit"><span data-show>Показать 4 749</span><svg class="arrow" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </form>
+    <ul class="chips rv" style="--d:260ms">
+      <li data-t="chip.1">0% комиссии на новостройки</li>
+      <li data-t="chip.2">Юристы с 2005 года</li>
+      <li data-t="chip.3">Покупка онлайн</li>
+    </ul>
+  </div>
+
+  <div class="hero__cards rv" style="--d:300ms">
+    <p data-t="hero.cards">Новостройки под Golden Visa</p>
+    <ul>
+      <li><a class="hcard" href="https://avezor.gr/buy">
+        <div class="hcard__img"><img src="assets/listings/25-0.jpg" width="1280" height="1638" alt="Новый жилой дом на улице Тразивулу, Пирей" data-ta="alt.c1"><span class="hcard__price" data-price="258390" data-from>от 258 390 €</span></div>
+        <div class="hcard__bar"><span data-t="c1">Тразивулу 17, Пирей</span><svg class="arrow" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a></li>
+      <li><a class="hcard" href="https://avezor.gr/buy">
+        <div class="hcard__img"><img src="assets/listings/29-0.jpg" width="1280" height="1280" alt="Жилой дом Riviera Plato в Афинах" data-ta="alt.c2"><span class="hcard__price" data-price="305000" data-from>от 305 000 €</span></div>
+        <div class="hcard__bar"><span data-t="c2">Riviera Plato, Афины</span><svg class="arrow" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<section class="why wrap grid" aria-labelledby="why-h">
+  <div class="why__head">
+    <h2 id="why-h" class="h2 rv" data-t="why.h">Что даёт Avezor</h2>
+    <p class="rv" style="--d:80ms" data-t="why.p">Avezor начиналась в 2005 году как юридическая фирма. Поэтому вместе с объектом вы получаете команду, которая отвечает за сделку.</p>
+  </div>
+  <div class="bento">
+    <div class="tile tile--red rv">
+      <div>
+        <div class="tile__big">0%</div>
+        <h3 style="margin-top:20px" data-t="w1.h">Комиссия для покупателей новостроек</h3>
+        <p data-t="w1.p">Покупатель новостройки не платит Avezor комиссию.</p>
+      </div>
+      <div class="tile__pic"><img src="assets/listings/22-0.jpg" width="1280" height="706" alt="Жилой дом Casablanka с зеленью на террасах" data-ta="alt.s2"></div>
+    </div>
+    <div class="tile tile--blush rv" style="--d:80ms">
+      <div class="tile__big">100%</div>
+      <div><h3 data-t="w2.h">Юридическое сопровождение в Доме юстиции</h3><p data-t="w2.p">Юрист Avezor рядом на каждом этапе, до регистрации собственности.</p></div>
+    </div>
+    <div class="tile tile--deep rv" style="--d:160ms">
+      <div class="tile__big tile__big--word">Full Service</div>
+      <div><h3 data-t="w3.h">От встречи в аэропорту до покупки и сдачи в аренду</h3><p data-t="w3.p">Встретим, покажем объекты, проведём сделку и сдадим жильё арендатору.</p></div>
+    </div>
+    <div class="tile tile--grey rv" style="--d:240ms; grid-column: span 2">
+      <div class="tile__big tile__big--word" data-t="w4.big">Покупка онлайн</div>
+      <div><h3 data-t="w4.h">Дистанционная покупка у застройщика</h3><p data-t="w4.p">Оформите покупку новостройки онлайн, без поездки в Грецию.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="new" id="new" aria-labelledby="new-h">
+  <div class="wrap new__head">
+    <h2 id="new-h" class="h2 rv" data-t="new.h">Новостройки Афин</h2>
+    <p class="rv" style="--d:80ms" data-t="new.cap">81 проект от застройщиков с ценами от 210 000 €. 28 из них подходят под Golden Visa.</p>
+    <div class="new__ctrl rv">
+      <button class="round" type="button" data-scroll="-1" aria-label="Back"><svg class="arrow" viewBox="0 0 18 18" aria-hidden="true" style="transform:scaleX(-1)"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="round" type="button" data-scroll="1" aria-label="Next"><svg class="arrow" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <a class="pill pill--soft" href="https://avezor.gr/buy" data-t="new.all">Все новостройки</a>
+    </div>
+  </div>
+  <div class="track rv" data-track>
+    <a class="card" href="https://avezor.gr/buy"><div class="card__pic"><img src="assets/listings/21-1.jpg" width="1280" height="706" alt="Жилой дом V by Estia с закруглёнными террасами" data-ta="alt.p1"><span class="card__price" data-price="1945320">1 945 320 €</span></div><h3>V by Estia</h3><p data-t="k.21">Афины · 160 м²</p></a>
+    <a class="card" href="https://avezor.gr/buy"><div class="card__pic"><img src="assets/listings/25-0.jpg" width="1280" height="1638" alt="Новый жилой дом на улице Тразивулу, Пирей" data-ta="alt.c1"><span class="card__gv">Golden Visa</span><span class="card__price" data-price="258390" data-from>от 258 390 €</span></div><h3 data-t="c1n">Тразивулу 17</h3><p data-t="k.25">Пирей · от 60 м²</p></a>
+    <a class="card" href="https://avezor.gr/buy"><div class="card__pic"><img src="assets/listings/11-0.jpg" width="876" height="492" alt="Жилой дом Pelargos на улице Никис" data-ta="alt.p4"><span class="card__price" data-price="628813">628 813 €</span></div><h3 data-t="p4">Pelargos, Никис 79</h3><p data-t="k.11">Афины, юг · 110 м²</p></a>
+    <a class="card" href="https://avezor.gr/buy"><div class="card__pic"><img src="assets/listings/29-1.jpg" width="1280" height="1280" alt="Жилой дом Riviera Plato в Афинах" data-ta="alt.c2"><span class="card__gv">Golden Visa</span><span class="card__price" data-price="305000" data-from>от 305 000 €</span></div><h3>Riviera Plato</h3><p data-t="k.29">Афины · от 60 м²</p></a>
+    <a class="card" href="https://avezor.gr/buy"><div class="card__pic"><img src="assets/listings/15-0.jpg" width="1200" height="1077" alt="Жилой дом A.Symmetron вечером" data-ta="alt.n15"><span class="card__price" data-price="581504">581 504 €</span></div><h3>A.Symmetron</h3><p data-t="k.15">Афины · 118 м²</p></a>
+    <a class="card" href="https://avezor.gr/buy"><div class="card__pic"><img src="assets/listings/19-1.jpg" width="1280" height="706" alt="Белый дом Voula Waves с волнистыми балконами" data-ta="alt.p2"><span class="card__price" data-price="837984" data-from>от 837 984 €</span></div><h3>Voula Waves</h3><p data-t="k.19">Вула</p></a>
+    <a class="card" href="https://avezor.gr/buy"><div class="card__pic"><img src="assets/listings/3-0.jpg" width="1280" height="642" alt="Новый жилой дом MART Construction" data-ta="alt.s1"><span class="card__price" data-price="533012">533 012 €</span></div><h3>MART Construction</h3><p data-t="k.3">Афины, юг · 104 м²</p></a>
+  </div>
+</section>
+
+<section class="budget wrap grid" id="budget" aria-labelledby="budget-h">
+  <div class="budget__head">
+    <h2 id="budget-h" class="h2 rv" data-t="budget.h">Что даёт ваш бюджет</h2>
+    <p class="rv" style="--d:80ms" data-t="budget.p">Выберите сумму и посмотрите, сколько реальных объектов на Avezor в неё укладывается и с какой суммы начинается Golden Visa.</p>
+  </div>
+  <ol class="steps rv" data-steps>
+    <li><button class="step" type="button" aria-pressed="true"><span data-t="b1.l">до 150 000 €</span><span data-n="1458">1 458</span></button></li>
+    <li><button class="step" type="button" aria-pressed="false"><span data-t="b2.l">до 250 000 €</span><span data-n="2380">2 380</span></button></li>
+    <li><button class="step" type="button" aria-pressed="false"><span data-t="b3.l">до 400 000 €</span><span data-n="3205">3 205</span></button></li>
+    <li><button class="step" type="button" aria-pressed="false"><span data-t="b4.l">до 800 000 €</span><span data-n="4103">4 103</span></button></li>
+    <li><button class="step" type="button" aria-pressed="false"><span data-t="b5.l">до 1 500 000 €</span><span data-n="4521">4 521</span></button></li>
+    <li><button class="step" type="button" aria-pressed="false"><span data-t="b6.l">больше 1 500 000 €</span><span data-n="309">309</span></button></li>
+  </ol>
+  <div class="result rv" style="--d:120ms" aria-live="polite">
+    <div class="result__text">
+      <div class="result__n" data-res-n>1 458</div>
+      <div class="result__noun" data-res-noun>объектов</div>
+      <p class="result__ex" data-res-ex>Например, дом 75 м² за 70 000 €.</p>
+      <p class="result__gv" data-res-gv>Ниже порога Golden Visa.</p>
+      <a class="pill" href="https://avezor.gr/buy" data-res-link><span data-t="b.see">Смотреть объекты</span><svg class="arrow" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="result__pic" data-res-pics>
+      <img class="is-on" src="assets/listings/64-0.jpg" width="900" height="1200" alt="Старый двухэтажный дом с надписью ΠΩΛΕΙΤΑΙ на стене" data-ta="alt.b1">
+      <img src="assets/listings/63-0.jpg" width="640" height="427" alt="Вид на море с холмов Наксоса" data-ta="alt.b2">
+      <img src="assets/listings/80-0.jpg" width="1280" height="960" alt="Дом с садом на Родосе" data-ta="alt.b3">
+      <img src="assets/listings/89-0.jpg" width="1024" height="683" alt="Арка с видом на море на вилле на Кифносе" data-ta="alt.b4">
+      <img src="assets/listings/85-0.jpg" width="1280" height="785" alt="Белый дом на холме Кифноса" data-ta="alt.b5">
+      <img src="assets/listings/79-0.jpg" width="1280" height="807" alt="Вилла с бассейном на Миконосе" data-ta="alt.b6">
+    </div>
+  </div>
+</section>
+
+<section class="how" aria-labelledby="how-h">
+  <div class="grid">
+    <div class="how__head">
+      <h2 id="how-h" class="h2 rv" data-t="how.h">Как проходит покупка</h2>
+      <p class="rv" style="--d:80ms" data-t="how.p">Обычно от одного до трёх месяцев. Большую часть шагов можно пройти удалённо.</p>
+    </div>
+    <div class="how__step s1 rv">
+      <figure><img src="assets/found/balcony-slab-on-kolokotroni-street-athens-on.jpg" width="1920" height="1280" alt="Мраморная консоль балкона на улице Колокотрони в Афинах" data-ta="alt.h1"></figure>
+      <p data-th="how.1"><strong>В первую неделю</strong> получаем налоговый номер AFM и открываем счёт в греческом банке. Это можно сделать по доверенности, без поездки.</p>
+    </div>
+    <div class="how__step s2 rv" style="--d:100ms">
+      <figure><img src="assets/found/1911-britannica-old-map-of-athens.png" width="1158" height="846" alt="Карта Афин из Британники 1911 года" data-ta="alt.h2"></figure>
+      <p data-th="how.2"><strong>Перед задатком</strong> юрист проверяет объект в Ktimatologio, греческом кадастре: собственника, обременения и разрешение на строительство.</p>
+    </div>
+    <div class="how__step s3 rv" style="--d:200ms">
+      <figure><img src="assets/listings/8-0.jpg" width="845" height="582" alt="Новый жилой дом Pelargos на улице Мецову" data-ta="alt.h3"></figure>
+      <p data-th="how.3"><strong>В день сделки</strong> договор подписывается у нотариуса и регистрируется в кадастре.</p>
+    </div>
+  </div>
+</section>
+
+<section class="areas wrap" aria-labelledby="areas-h">
+  <div class="grid">
+    <div class="areas__head">
+      <h2 id="areas-h" class="h2 rv" data-t="areas.h">Где покупают в Афинах</h2>
+      <p class="rv" style="--d:80ms" data-t="areas.p">Прибрежный юг Аттики и Пирей: здесь больше всего новостроек на Avezor.</p>
+    </div>
+  </div>
+  <div class="areas__grid">
+    <a class="area" href="https://avezor.gr/buy"><img src="assets/listings/20-1.jpg" width="1280" height="706" alt="Новый дом с бассейном в Вуле" data-ta="alt.v"><span class="area__label"><b data-t="pl.1">Вула</b><span data-price="837984" data-from>от 837 984 €</span></span></a>
+    <a class="area" href="https://avezor.gr/buy"><img src="assets/listings/24-0.jpg" width="890" height="835" alt="Новый жилой дом в Палео Фалиро" data-ta="alt.pf"><span class="area__label"><b data-t="pl.2">Палео Фалиро</b><span data-price="237897" data-from>от 237 897 €</span></span></a>
+    <a class="area" href="https://avezor.gr/buy"><img src="assets/listings/26-1.jpg" width="1280" height="1280" alt="Дом с озеленёнными балконами в Пирее" data-ta="alt.p3"><span class="area__label"><b data-t="pl.3">Пирей</b><span data-price="222750" data-from>от 222 750 €</span></span></a>
+    <a class="area" href="https://avezor.gr/buy"><img src="assets/listings/23-0.jpg" width="1280" height="853" alt="Новый жилой дом в Элиниконе" data-ta="alt.a2"><span class="area__label"><b data-t="pl.4">Элиникон</b><span data-price="240570" data-from>от 240 570 €</span></span></a>
+  </div>
+  <p class="areas__foot rv"><a class="tlink" href="https://avezor.gr/buy" data-t="areas.more">И ещё 4 749 объектов вторичного рынка по всей Греции</a></p>
+</section>
+
+<section class="faq wrap grid" id="ask" aria-labelledby="ask-h">
+  <div class="faq__text">
+    <h2 id="ask-h" class="h2 rv" data-t="ask.h">Вопросы покупателей</h2>
+    <p class="rv" style="--d:80ms" data-t="ask.p">Не нашли ответ? Напишите юристу, ответим на русском, английском или греческом.</p>
+    <div class="faq__contacts rv" style="--d:160ms">
+      <a class="pill" href="https://t.me/AvezorGR">Telegram</a>
+      <a class="pill pill--soft" href="https://wa.me/306983230925">WhatsApp</a>
+      <a class="pill pill--soft" href="viber://chat?number=306983230925">Viber</a>
+    </div>
+  </div>
+  <div class="faq__list">
+    <details open><summary><span data-t="q1">Может ли иностранец купить недвижимость в Греции?</span><i class="plus" aria-hidden="true"></i></summary><p data-t="a1">Да, иностранцы имеют право покупать недвижимость в Греции без ограничений.</p></details>
+    <details><summary><span data-t="q2">Сколько времени занимает сделка?</span><i class="plus" aria-hidden="true"></i></summary><p data-t="a2">Обычно от одного до трёх месяцев: греческий налоговый номер (AFM), юридическая проверка объекта, договор у нотариуса и регистрация в кадастре.</p></details>
+    <details><summary><span data-t="q3">Нужен ли счёт в греческом банке?</span><i class="plus" aria-hidden="true"></i></summary><p data-t="a3">На практике да: оплата проходит через греческий банк, и это подтверждает законное происхождение средств. Для ВНЖ такой платёж обязателен.</p></details>
+    <details><summary><span data-t="q4">Можно ли получить ВНЖ через покупку?</span><i class="plus" aria-hidden="true"></i></summary><p data-t="a4">Да. Golden Visa даёт вид на жительство на 5 лет с правом продления для всей семьи. Минимум 250 000 € для отдельных категорий объектов; в Афинах, Салониках и на популярных островах порог выше.</p></details>
+    <details><summary><span data-t="q5">Можно ли сдавать жильё туристам?</span><i class="plus" aria-hidden="true"></i></summary><p data-t="a5">Да, после регистрации в реестре краткосрочной аренды и с уплатой налога. Исключение: жильё, купленное по Golden Visa, можно сдавать только надолго.</p></details>
+    <details><summary><span data-t="q6">Можно ли купить новостройку, не приезжая в Грецию?</span><i class="plus" aria-hidden="true"></i></summary><p data-t="a6">Да. Avezor оформляет покупку у застройщика онлайн, а подписи делаются по доверенности.</p></details>
+  </div>
+</section>
+
+<section class="close on-red" aria-labelledby="close-h">
+  <div class="grid">
+    <div class="close__text">
+      <h2 id="close-h" class="h2" data-t="close.h">Расскажите, что ищете</h2>
+      <p class="lead" data-t="close.p">Подберём объекты под бюджет и проверим документы до задатка. Покупателям новостроек это ничего не стоит.</p>
+      <div class="close__actions">
+        <a class="pill pill--white" href="https://t.me/AvezorGR" data-t="close.tg">Написать в Telegram</a>
+        <a class="pill pill--glass" href="https://wa.me/306983230925">WhatsApp</a>
+        <a class="pill pill--glass" href="tel:+306983230925">+30 698 323 0925</a>
+      </div>
+    </div>
+    <div class="close__pic">
+      <div class="arch"><img src="assets/listings/22-1.jpg" width="1280" height="706" alt="Жилой дом Casablanka с зеленью на террасах" data-ta="alt.s2"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__pic"><img src="assets/hero-current.jpg" width="2560" height="1707" alt="Белые дома Санторини над кальдерой" data-ta="alt.f"></div>
+  <div class="foot__panel">
+    <img src="assets/white-logo.svg" width="87" height="28" alt="Avezor">
+    <ul class="foot__nav">
+      <li><a href="https://avezor.gr/buy" data-t="nav.buy">Купить</a></li>
+      <li><a href="https://avezor.gr/about" data-t="nav.about">О компании</a></li>
+      <li><a href="#new" data-t="nav.new">Новостройки</a></li>
+      <li><a href="https://avezor.gr/blog" data-t="nav.blog">Блог</a></li>
+      <li><a href="https://avezor.gr/rent" data-t="nav.rent">Аренда</a></li>
+      <li><a href="https://avezor.gr/contacts" data-t="f.contacts">Контакты</a></li>
+      <li><a href="#budget">Golden Visa</a></li>
+    </ul>
+    <div class="foot__info">
+      <a class="pill" href="tel:+306983230925">+30 698 323 0925</a>
+      <a class="pill" href="mailto:info@avezor.gr">info@avezor.gr</a>
+      <a class="pill" href="https://t.me/AvezorGR">Telegram</a>
+      <a class="pill" href="https://wa.me/306983230925">WhatsApp</a>
+      <a class="pill" href="viber://chat?number=306983230925">Viber</a>
+    </div>
+    <div class="foot__legal">
+      <p><span data-t="ask.f0">Офис в Афинах</span> · © 2005–2026 Avezor</p>
+      <p data-t="credits">Фото: Avezor и застройщики; «Balcony slab on Kolokotroni Street», George E. Koronaios, CC BY-SA 4.0; карта Афин, Encyclopædia Britannica, 1911, общественное достояние. Через Wikimedia Commons.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+
+const L = { ru: 0, en: 1, el: 2 };
+const LOCALE = ['ru-RU', 'en-GB', 'el-GR'];
+const T = {
+  'nav.buy': ['Купить', 'Buy', 'Αγορά'],
+  'nav.new': ['Новостройки', 'New builds', 'Νεόδμητα'],
+  'nav.rent': ['Аренда', 'Rent', 'Ενοικίαση'],
+  'nav.about': ['О компании', 'About', 'Η εταιρεία'],
+  'nav.blog': ['Блог', 'Blog', 'Blog'],
+  'nav.cta': ['Консультация', 'Get advice', 'Συμβουλή'],
+  'hero.h1': ['Недвижимость в Греции', 'Property in Greece', 'Ακίνητα στην Ελλάδα'],
+  'hero.sub': [
+    '4 749 объектов на продажу и 81 новостройка. Юристы Avezor ведут сделку от первого показа до ключей.',
+    '4,749 homes for sale and 81 new developments. Avezor lawyers take the deal from the first viewing to the keys.',
+    '4.749 ακίνητα προς πώληση και 81 νέα έργα. Οι δικηγόροι της Avezor συνοδεύουν την αγορά από την πρώτη επίσκεψη ως τα κλειδιά.'],
+  's.where': ['Где', 'Where', 'Πού'],
+  's.where0': ['Вся Греция', 'All of Greece', 'Όλη η Ελλάδα'],
+  's.where1': ['Афины и Аттика', 'Athens and Attica', 'Αθήνα και Αττική'],
+  's.where2': ['Салоники', 'Thessaloniki', 'Θεσσαλονίκη'],
+  's.where3': ['Крит', 'Crete', 'Κρήτη'],
+  's.where4': ['Острова', 'Islands', 'Νησιά'],
+  's.what': ['Что', 'What', 'Τι'],
+  's.what0': ['Любой тип', 'Any type', 'Κάθε τύπος'],
+  's.what1': ['Квартира', 'Apartment', 'Διαμέρισμα'],
+  's.what2': ['Дом', 'House', 'Μονοκατοικία'],
+  's.what3': ['Вилла', 'Villa', 'Βίλα'],
+  's.what4': ['Участок', 'Plot', 'Οικόπεδο'],
+  's.budget': ['Бюджет', 'Budget', 'Ποσό'],
+  's.any': ['Любой', 'Any', 'Οποιοδήποτε'],
+  's.upto': ['до', 'up to', 'έως'],
+  's.show': ['Показать', 'Show', 'Εμφάνιση'],
+  'hero.cards': ['Новостройки под Golden Visa', 'New builds for the Golden Visa', 'Νεόδμητα για Golden Visa'],
+  'c1': ['Тразивулу 17, Пирей', 'Thrasivoulou 17, Piraeus', 'Θρασυβούλου 17, Πειραιάς'],
+  'c2': ['Riviera Plato, Афины', 'Riviera Plato, Athens', 'Riviera Plato, Αθήνα'],
+  'alt.hero1': ['Кальдера Санторини: белые дома над морем', 'Santorini caldera: white houses above the sea', 'Η καλντέρα της Σαντορίνης: λευκά σπίτια πάνω από τη θάλασσα'],
+  'alt.hero3': ['Бассейн виллы на острове Кеа на закате', 'A villa pool on Kea at sunset', 'Πισίνα βίλας στην Κέα στο ηλιοβασίλεμα'],
+  'alt.f': ['Белые дома Санторини над кальдерой', 'White houses of Santorini above the caldera', 'Λευκά σπίτια της Σαντορίνης πάνω από την καλντέρα'],
+  'chip.1': ['0% комиссии на новостройки', '0% commission on new builds', '0% προμήθεια στα νεόδμητα'],
+  'chip.2': ['Юристы с 2005 года', 'Lawyers since 2005', 'Δικηγόροι από το 2005'],
+  'chip.3': ['Покупка онлайн', 'Buy online', 'Αγορά online'],
+  'from': ['от', 'from', 'από'],
+  'why.h': ['Что даёт Avezor', 'What Avezor gives you', 'Τι σας δίνει η Avezor'],
+  'why.p': [
+    'Avezor начиналась в 2005 году как юридическая фирма. Поэтому вместе с объектом вы получаете команду, которая отвечает за сделку.',
+    'Avezor began in 2005 as a law firm. So with the property you get a team that answers for the deal.',
+    'Η Avezor ξεκίνησε το 2005 ως δικηγορική εταιρεία. Μαζί με το ακίνητο αποκτάτε μια ομάδα που εγγυάται τη συναλλαγή.'],
+  'w1.h': ['Комиссия для покупателей новостроек', 'Commission for new-build buyers', 'Προμήθεια για αγοραστές νεόδμητων'],
+  'w1.p': ['Покупатель новостройки не платит Avezor комиссию.', 'If you buy a new build, you pay Avezor no commission.', 'Ο αγοραστής νεόδμητου δεν πληρώνει προμήθεια στην Avezor.'],
+  'w2.h': ['Юридическое сопровождение в Доме юстиции', 'Legal support at the House of Justice', 'Νομική υποστήριξη στον Οίκο Δικαιοσύνης'],
+  'w2.p': ['Юрист Avezor рядом на каждом этапе, до регистрации собственности.', 'An Avezor lawyer is with you at every step, up to registration of ownership.', 'Δικηγόρος της Avezor σε κάθε βήμα, ως την καταχώριση της κυριότητας.'],
+  'w3.h': ['От встречи в аэропорту до покупки и сдачи в аренду', 'From the airport pick-up to buying and letting', 'Από την υποδοχή στο αεροδρόμιο ως την αγορά και τη μίσθωση'],
+  'w3.p': ['Встретим, покажем объекты, проведём сделку и сдадим жильё арендатору.', 'We meet you, show the homes, close the deal and find your tenant.', 'Σας υποδεχόμαστε, δείχνουμε τα ακίνητα, κλείνουμε τη συμφωνία και βρίσκουμε ενοικιαστή.'],
+  'w4.big': ['Покупка онлайн', 'Buy online', 'Αγορά online'],
+  'w4.h': ['Дистанционная покупка у застройщика', 'Remote purchase from the developer', 'Εξ αποστάσεως αγορά από τον κατασκευαστή'],
+  'w4.p': ['Оформите покупку новостройки онлайн, без поездки в Грецию.', 'Complete a new-build purchase online, without travelling to Greece.', 'Ολοκληρώστε την αγορά νεόδμητου online, χωρίς ταξίδι στην Ελλάδα.'],
+  'new.h': ['Новостройки Афин', 'New builds in Athens', 'Νεόδμητα στην Αθήνα'],
+  'new.cap': [
+    '81 проект от застройщиков с ценами от 210 000 €. 28 из них подходят под Golden Visa.',
+    '81 projects by developers, priced from €210,000. 28 of them qualify for the Golden Visa.',
+    '81 έργα κατασκευαστών με τιμές από 210.000 €. Τα 28 πληρούν τις προϋποθέσεις της Golden Visa.'],
+  'new.all': ['Все новостройки', 'All new builds', 'Όλα τα νεόδμητα'],
+  'c1n': ['Тразивулу 17', 'Thrasivoulou 17', 'Θρασυβούλου 17'],
+  'p4': ['Pelargos, Никис 79', 'Pelargos, Nikis 79', 'Πελαργός, Νίκης 79'],
+  'k.21': ['Афины · 160 м²', 'Athens · 160 m²', 'Αθήνα · 160 τ.μ.'],
+  'k.25': ['Пирей · от 60 м²', 'Piraeus · from 60 m²', 'Πειραιάς · από 60 τ.μ.'],
+  'k.11': ['Афины, юг · 110 м²', 'South Athens · 110 m²', 'Νότια Αθήνα · 110 τ.μ.'],
+  'k.29': ['Афины · от 60 м²', 'Athens · from 60 m²', 'Αθήνα · από 60 τ.μ.'],
+  'k.15': ['Афины · 118 м²', 'Athens · 118 m²', 'Αθήνα · 118 τ.μ.'],
+  'k.19': ['Вула', 'Voula', 'Βούλα'],
+  'k.3': ['Афины, юг · 104 м²', 'South Athens · 104 m²', 'Νότια Αθήνα · 104 τ.μ.'],
+  'budget.h': ['Что даёт ваш бюджет', 'What your budget buys', 'Τι αγοράζει το ποσό σας'],
+  'budget.p': [
+    'Выберите сумму и посмотрите, сколько реальных объектов на Avezor в неё укладывается и с какой суммы начинается Golden Visa.',
+    'Pick an amount to see how many real Avezor listings fit it, and where the Golden Visa begins.',
+    'Επιλέξτε ποσό και δείτε πόσα πραγματικά ακίνητα της Avezor χωρούν σε αυτό και από πού ξεκινά η Golden Visa.'],
+  'b1.l': ['до 150 000 €', 'up to €150,000', 'έως 150.000 €'],
+  'b2.l': ['до 250 000 €', 'up to €250,000', 'έως 250.000 €'],
+  'b3.l': ['до 400 000 €', 'up to €400,000', 'έως 400.000 €'],
+  'b4.l': ['до 800 000 €', 'up to €800,000', 'έως 800.000 €'],
+  'b5.l': ['до 1 500 000 €', 'up to €1,500,000', 'έως 1.500.000 €'],
+  'b6.l': ['больше 1 500 000 €', 'over €1,500,000', 'πάνω από 1.500.000 €'],
+  'b1.ex': ['Например, дом 75 м² за 70 000 €.', 'For example, a 75 m² house for €70,000.', 'Για παράδειγμα, μονοκατοικία 75 τ.μ. με 70.000 €.'],
+  'b2.ex': ['Например, дом 52 м² на Наксосе за 200 000 €.', 'For example, a 52 m² house on Naxos for €200,000.', 'Για παράδειγμα, μονοκατοικία 52 τ.μ. στη Νάξο με 200.000 €.'],
+  'b3.ex': ['Например, дом 194 м² на Родосе за 395 000 €.', 'For example, a 194 m² house on Rhodes for €395,000.', 'Για παράδειγμα, μονοκατοικία 194 τ.μ. στη Ρόδο με 395.000 €.'],
+  'b4.ex': ['Например, вилла 320 м² на Кифносе за 640 000 €.', 'For example, a 320 m² villa on Kythnos for €640,000.', 'Για παράδειγμα, βίλα 320 τ.μ. στην Κύθνο με 640.000 €.'],
+  'b5.ex': ['Например, дом 278 м² на Кифносе за 1 300 000 €.', 'For example, a 278 m² house on Kythnos for €1,300,000.', 'Για παράδειγμα, μονοκατοικία 278 τ.μ. στην Κύθνο με 1.300.000 €.'],
+  'b6.ex': ['Например, вилла 200 м² на Миконосе за 3 500 000 €.', 'For example, a 200 m² villa on Mykonos for €3,500,000.', 'Για παράδειγμα, βίλα 200 τ.μ. στη Μύκονο με 3.500.000 €.'],
+  'b1.gv': ['Ниже порога Golden Visa.', 'Below the Golden Visa threshold.', 'Κάτω από το όριο της Golden Visa.'],
+  'b2.gv': ['С 250 000 € доступна Golden Visa для зданий, переоборудованных под жильё.', 'From €250,000: the Golden Visa for buildings converted into homes.', 'Από 250.000 €: Golden Visa για κτίρια που μετατράπηκαν σε κατοικίες.'],
+  'b3.gv': ['С 400 000 € Golden Visa доступна в большинстве регионов.', 'From €400,000: the Golden Visa in most of the country.', 'Από 400.000 €: Golden Visa στις περισσότερες περιοχές.'],
+  'b4.gv': ['С 800 000 € Golden Visa доступна в Аттике, Салониках, на Миконосе и Санторини.', 'From €800,000: the Golden Visa in Attica, Thessaloniki, Mykonos and Santorini.', 'Από 800.000 €: Golden Visa σε Αττική, Θεσσαλονίκη, Μύκονο και Σαντορίνη.'],
+  'b5.gv': ['Golden Visa доступна в любом регионе.', 'The Golden Visa in any region.', 'Golden Visa σε κάθε περιοχή.'],
+  'b.see': ['Смотреть объекты', 'See listings', 'Δείτε τα ακίνητα'],
+  'how.h': ['Как проходит покупка', 'How buying works', 'Πώς γίνεται η αγορά'],
+  'how.p': ['Обычно от одного до трёх месяцев. Большую часть шагов можно пройти удалённо.', 'Usually one to three months. Most steps can be done remotely.', 'Συνήθως από έναν έως τρεις μήνες. Τα περισσότερα βήματα γίνονται εξ αποστάσεως.'],
+  'how.1': [
+    '<strong>В первую неделю</strong> получаем налоговый номер AFM и открываем счёт в греческом банке. Это можно сделать по доверенности, без поездки.',
+    '<strong>In the first week</strong> we get your AFM tax number and open a Greek bank account. Both can be done by power of attorney, without a trip.',
+    '<strong>Την πρώτη εβδομάδα</strong> εκδίδουμε ΑΦΜ και ανοίγουμε λογαριασμό σε ελληνική τράπεζα. Γίνεται και με πληρεξούσιο, χωρίς ταξίδι.'],
+  'how.2': [
+    '<strong>Перед задатком</strong> юрист проверяет объект в Ktimatologio, греческом кадастре: собственника, обременения и разрешение на строительство.',
+    '<strong>Before the deposit</strong> a lawyer checks the property in the Ktimatologio, the Greek land registry: the owner, any charges and the building permit.',
+    '<strong>Πριν από την προκαταβολή</strong> δικηγόρος ελέγχει το ακίνητο στο Κτηματολόγιο: ιδιοκτήτη, βάρη και οικοδομική άδεια.'],
+  'how.3': [
+    '<strong>В день сделки</strong> договор подписывается у нотариуса и регистрируется в кадастре.',
+    '<strong>On completion day</strong> the contract is signed before a notary and registered with the land registry.',
+    '<strong>Την ημέρα της μεταβίβασης</strong> το συμβόλαιο υπογράφεται στον συμβολαιογράφο και καταχωρίζεται στο Κτηματολόγιο.'],
+  'areas.h': ['Где покупают в Афинах', 'Where people buy in Athens', 'Πού αγοράζουν στην Αθήνα'],
+  'areas.p': ['Прибрежный юг Аттики и Пирей: здесь больше всего новостроек на Avezor.', 'The southern Attica coast and Piraeus: most of the new builds on Avezor are here.', 'Τα νότια παράλια της Αττικής και ο Πειραιάς: εδώ βρίσκονται τα περισσότερα νεόδμητα της Avezor.'],
+  'areas.more': ['И ещё 4 749 объектов вторичного рынка по всей Греции', 'Plus 4,749 resale listings across Greece', 'Και 4.749 ακίνητα μεταπώλησης σε όλη την Ελλάδα'],
+  'pl.1': ['Вула', 'Voula', 'Βούλα'], 'pl.2': ['Палео Фалиро', 'Palaio Faliro', 'Παλαιό Φάληρο'], 'pl.3': ['Пирей', 'Piraeus', 'Πειραιάς'], 'pl.4': ['Элиникон', 'Elliniko', 'Ελληνικό'],
+  'ask.h': ['Вопросы покупателей', 'What buyers ask', 'Τι ρωτούν οι αγοραστές'],
+  'ask.p': ['Не нашли ответ? Напишите юристу, ответим на русском, английском или греческом.', 'No answer here? Message a lawyer in English, Russian or Greek.', 'Δεν βρήκατε απάντηση; Γράψτε σε δικηγόρο στα ελληνικά, αγγλικά ή ρωσικά.'],
+  'ask.f0': ['Офис в Афинах', 'Office in Athens', 'Γραφείο στην Αθήνα'],
+  'q1': ['Может ли иностранец купить недвижимость в Греции?', 'Can a foreigner buy property in Greece?', 'Μπορεί ένας αλλοδαπός να αγοράσει ακίνητο στην Ελλάδα;'],
+  'a1': ['Да, иностранцы имеют право покупать недвижимость в Греции без ограничений.', 'Yes, foreigners may buy property in Greece without restrictions.', 'Ναι, οι αλλοδαποί έχουν δικαίωμα να αγοράζουν ακίνητα στην Ελλάδα χωρίς περιορισμούς.'],
+  'q2': ['Сколько времени занимает сделка?', 'How long does the purchase take?', 'Πόσο διαρκεί η αγορά;'],
+  'a2': ['Обычно от одного до трёх месяцев: греческий налоговый номер (AFM), юридическая проверка объекта, договор у нотариуса и регистрация в кадастре.', 'Usually one to three months: a Greek tax number (AFM), a legal check of the property, the contract before a notary and registration with the land registry.', 'Συνήθως από έναν έως τρεις μήνες: ΑΦΜ, νομικός έλεγχος του ακινήτου, συμβόλαιο στον συμβολαιογράφο και καταχώριση στο Κτηματολόγιο.'],
+  'q3': ['Нужен ли счёт в греческом банке?', 'Do I need a Greek bank account?', 'Χρειάζομαι λογαριασμό σε ελληνική τράπεζα;'],
+  'a3': ['На практике да: оплата проходит через греческий банк, и это подтверждает законное происхождение средств. Для ВНЖ такой платёж обязателен.', 'In practice, yes: payment goes through a Greek bank, which proves the funds are legitimate. For a residence permit such a payment is mandatory.', 'Στην πράξη ναι: η πληρωμή γίνεται μέσω ελληνικής τράπεζας, κάτι που αποδεικνύει τη νόμιμη προέλευση των χρημάτων. Για την άδεια διαμονής είναι υποχρεωτική.'],
+  'q4': ['Можно ли получить ВНЖ через покупку?', 'Can I get residency by buying property?', 'Μπορώ να πάρω άδεια διαμονής με αγορά ακινήτου;'],
+  'a4': ['Да. Golden Visa даёт вид на жительство на 5 лет с правом продления для всей семьи. Минимум 250 000 € для отдельных категорий объектов; в Афинах, Салониках и на популярных островах порог выше.', 'Yes. The Golden Visa grants a renewable 5-year residence permit for the whole family. The minimum is €250,000 for certain types of property; in Athens, Thessaloniki and the popular islands the threshold is higher.', 'Ναι. Η Golden Visa δίνει ανανεώσιμη άδεια διαμονής 5 ετών για όλη την οικογένεια. Το ελάχιστο είναι 250.000 € για ορισμένες κατηγορίες ακινήτων· στην Αθήνα, τη Θεσσαλονίκη και τα δημοφιλή νησιά το όριο είναι υψηλότερο.'],
+  'q5': ['Можно ли сдавать жильё туристам?', 'Can I let my home to tourists?', 'Μπορώ να νοικιάζω σε τουρίστες;'],
+  'a5': ['Да, после регистрации в реестре краткосрочной аренды и с уплатой налога. Исключение: жильё, купленное по Golden Visa, можно сдавать только надолго.', 'Yes, once it is registered for short-term rental and the income is taxed. The exception is property bought under the Golden Visa: it may only be let long-term.', 'Ναι, αφού καταχωριστεί στο μητρώο βραχυχρόνιας μίσθωσης και φορολογηθεί το εισόδημα. Εξαίρεση: τα ακίνητα της Golden Visa επιτρέπεται να μισθώνονται μόνο μακροχρόνια.'],
+  'q6': ['Можно ли купить новостройку, не приезжая в Грецию?', 'Can I buy a new build without coming to Greece?', 'Μπορώ να αγοράσω νεόδμητο χωρίς να έρθω στην Ελλάδα;'],
+  'a6': ['Да. Avezor оформляет покупку у застройщика онлайн, а подписи делаются по доверенности.', 'Yes. Avezor arranges the purchase from the developer online, and signatures are made by power of attorney.', 'Ναι. Η Avezor οργανώνει την αγορά από τον κατασκευαστή online και οι υπογραφές γίνονται με πληρεξούσιο.'],
+  'close.h': ['Расскажите, что ищете', 'Tell us what you need', 'Πείτε μας τι ψάχνετε'],
+  'close.p': ['Подберём объекты под бюджет и проверим документы до задатка. Покупателям новостроек это ничего не стоит.', 'We shortlist homes for your budget and check the papers before any deposit. For new-build buyers it costs nothing.', 'Επιλέγουμε ακίνητα για τον προϋπολογισμό σας και ελέγχουμε τα έγγραφα πριν από την προκαταβολή. Για αγοραστές νεόδμητων δεν κοστίζει τίποτα.'],
+  'close.tg': ['Написать в Telegram', 'Message on Telegram', 'Γράψτε στο Telegram'],
+  'f.buy': ['Покупка', 'Buying', 'Αγορά'],
+  'f.co': ['Компания', 'Company', 'Εταιρεία'],
+  'f.msg': ['Мессенджеры', 'Messengers', 'Μηνύματα'],
+  'f.contacts': ['Контакты', 'Contacts', 'Επικοινωνία'],
+  'credits': [
+    'Фото: Avezor и застройщики; «Balcony slab on Kolokotroni Street», George E. Koronaios, CC BY-SA 4.0; карта Афин, Encyclopædia Britannica, 1911, общественное достояние. Через Wikimedia Commons.',
+    'Photos: Avezor and the developers; “Balcony slab on Kolokotroni Street” by George E. Koronaios, CC BY-SA 4.0; map of Athens, Encyclopædia Britannica, 1911, public domain. Via Wikimedia Commons.',
+    'Φωτογραφίες: Avezor και κατασκευαστές· «Balcony slab on Kolokotroni Street» του George E. Koronaios, CC BY-SA 4.0· χάρτης της Αθήνας, Encyclopædia Britannica, 1911, κοινό κτήμα. Μέσω Wikimedia Commons.'],
+  'alt.p1': ['Жилой дом V by Estia с закруглёнными террасами', 'V by Estia, a building with curved terraces', 'V by Estia, κτίριο με καμπύλες βεράντες'],
+  'alt.p2': ['Белый дом Voula Waves с волнистыми балконами', 'Voula Waves, a white building with wave-shaped balconies', 'Voula Waves, λευκό κτίριο με κυματιστά μπαλκόνια'],
+  'alt.p3': ['Дом с озеленёнными балконами в Пирее', 'A building with planted balconies in Piraeus', 'Κτίριο με φυτεμένα μπαλκόνια στον Πειραιά'],
+  'alt.p4': ['Жилой дом Pelargos на улице Никис', 'The Pelargos building on Nikis Street', 'Το κτίριο Πελαργός στην οδό Νίκης'],
+  'alt.c1': ['Новый жилой дом на улице Тразивулу, Пирей', 'A new apartment building on Thrasivoulou Street, Piraeus', 'Νέα πολυκατοικία στην οδό Θρασυβούλου, Πειραιάς'],
+  'alt.c2': ['Жилой дом Riviera Plato в Афинах', 'The Riviera Plato building in Athens', 'Το κτίριο Riviera Plato στην Αθήνα'],
+  'alt.n15': ['Жилой дом A.Symmetron вечером', 'The A.Symmetron building at dusk', 'Το κτίριο A.Symmetron το σούρουπο'],
+  'alt.s1': ['Новый жилой дом MART Construction', 'A new MART Construction building', 'Νέο κτίριο της MART Construction'],
+  'alt.s2': ['Жилой дом Casablanka с зеленью на террасах', 'Casablanka, a building with planted terraces', 'Casablanka, κτίριο με φυτεμένες βεράντες'],
+  'alt.v': ['Новый дом с бассейном в Вуле', 'A new building with a pool in Voula', 'Νέο κτίριο με πισίνα στη Βούλα'],
+  'alt.pf': ['Новый жилой дом в Палео Фалиро', 'A new apartment building in Palaio Faliro', 'Νέα πολυκατοικία στο Παλαιό Φάληρο'],
+  'alt.a2': ['Новый жилой дом в Элиниконе', 'A new apartment building in Elliniko', 'Νέα πολυκατοικία στο Ελληνικό'],
+  'alt.b1': ['Старый двухэтажный дом с надписью ΠΩΛΕΙΤΑΙ на стене', 'An old two-storey house with ΠΩΛΕΙΤΑΙ painted on the wall', 'Παλιό διώροφο σπίτι με την επιγραφή ΠΩΛΕΙΤΑΙ στον τοίχο'],
+  'alt.b2': ['Вид на море с холмов Наксоса', 'The sea seen from the hills of Naxos', 'Θέα στη θάλασσα από τους λόφους της Νάξου'],
+  'alt.b3': ['Дом с садом на Родосе', 'A house with a garden on Rhodes', 'Σπίτι με κήπο στη Ρόδο'],
+  'alt.b4': ['Арка с видом на море на вилле на Кифносе', 'An arch framing the sea at a villa on Kythnos', 'Καμάρα με θέα στη θάλασσα σε βίλα στην Κύθνο'],
+  'alt.b5': ['Белый дом на холме Кифноса', 'A white house on a hill on Kythnos', 'Λευκό σπίτι σε λόφο της Κύθνου'],
+  'alt.b6': ['Вилла с бассейном на Миконосе', 'A villa with a pool on Mykonos', 'Βίλα με πισίνα στη Μύκονο'],
+  'alt.h1': ['Мраморная консоль балкона на улице Колокотрони в Афинах', 'A marble balcony bracket on Kolokotroni Street, Athens', 'Μαρμάρινο φουρούσι μπαλκονιού στην οδό Κολοκοτρώνη, Αθήνα'],
+  'alt.h2': ['Карта Афин из Британники 1911 года', 'A map of Athens from the 1911 Britannica', 'Χάρτης της Αθήνας από τη Britannica του 1911'],
+  'alt.h3': ['Новый жилой дом Pelargos на улице Мецову', 'The new Pelargos building on Metsovou Street', 'Το νέο κτίριο Πελαργός στην οδό Μετσόβου']
+};
+const NOUN = {
+  ru: { one: 'объект', few: 'объекта', many: 'объектов', other: 'объекта' },
+  en: { one: 'listing', other: 'listings' },
+  el: { one: 'ακίνητο', other: 'ακίνητα' }
+};
+const BUDGET = [
+  { n: 1458, q: 'totalPriceMax=150000' }, { n: 2380, q: 'totalPriceMax=250000' }, { n: 3205, q: 'totalPriceMax=400000' },
+  { n: 4103, q: 'totalPriceMax=800000' }, { n: 4521, q: 'totalPriceMax=1500000' }, { n: 309, q: 'totalPriceMin=1500000' }
+];
+const GV = ['b1.gv', 'b2.gv', 'b3.gv', 'b4.gv', 'b5.gv', 'b5.gv'];
+const HERO = [
+  { name: 'V by Estia', price: 1945320 },
+  { name: 'Voula Waves', price: 837984, from: true },
+  { name: { ru: 'Никита 6–8, Пирей', en: 'Nikita 6–8, Piraeus', el: 'Νικήτα 6–8, Πειραιάς' }, price: 222750, from: true }
+];
+
+let lang = 'ru', bIdx = 0, hIdx = 0;
+const loc = () => LOCALE[L[lang]];
+const nf = () => new Intl.NumberFormat(loc());
+const money = v => new Intl.NumberFormat(loc(), { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(v);
+const noun = n => { const f = NOUN[lang]; return f[new Intl.PluralRules(loc()).select(n)] || f.other; };
+const t = k => (T[k] ? T[k][L[lang]] : null);
+const priceText = (v, from) => (from ? t('from') + ' ' + money(v) : money(v));
+
+function apply(next) {
+  lang = next;
+  document.documentElement.lang = lang;
+  document.title = { ru: 'Avezor: недвижимость в Греции', en: 'Avezor: property in Greece', el: 'Avezor: ακίνητα στην Ελλάδα' }[lang];
+  document.querySelectorAll('[data-t]').forEach(el => { const v = t(el.dataset.t); if (v != null) el.textContent = v; });
+  document.querySelectorAll('[data-th]').forEach(el => { const v = t(el.dataset.th); if (v != null) el.innerHTML = v; });
+  document.querySelectorAll('[data-ta]').forEach(el => { const v = t(el.dataset.ta); if (v != null) el.alt = v; });
+  document.querySelectorAll('[data-price]').forEach(el => { el.textContent = priceText(+el.dataset.price, el.hasAttribute('data-from')); });
+  document.querySelectorAll('.step [data-n]').forEach(el => { el.textContent = nf().format(+el.dataset.n); });
+  document.querySelectorAll('#f-budget option').forEach(o => { o.textContent = o.value ? t('s.upto') + ' ' + money(+o.value) : t('s.any'); });
+  document.querySelectorAll('.langs button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  updateShow(); setBudget(bIdx); setHeroTag(hIdx);
+  try { localStorage.setItem('avezor-lang', lang); } catch (e) {}
+}
+
+const budgetSel = document.getElementById('f-budget');
+const showEl = document.querySelector('[data-show]');
+function updateShow() { showEl.textContent = t('s.show') + ' ' + nf().format(+budgetSel.selectedOptions[0].dataset.n); }
+budgetSel.addEventListener('change', updateShow);
+
+/* Budget: the live thing. */
+const steps = [...document.querySelectorAll('.step')];
+const resPics = [...document.querySelectorAll('[data-res-pics] img')];
+const $ = s => document.querySelector(s);
+function setBudget(i) {
+  bIdx = i;
+  steps.forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
+  resPics.forEach((im, k) => im.classList.toggle('is-on', k === i));
+  const n = BUDGET[i].n;
+  $('[data-res-n]').textContent = nf().format(n);
+  $('[data-res-noun]').textContent = noun(n);
+  $('[data-res-ex]').textContent = t('b' + (i + 1) + '.ex');
+  $('[data-res-gv]').textContent = t(GV[i]);
+  $('[data-res-link]').href = 'https://avezor.gr/buy?' + BUDGET[i].q;
+}
+steps.forEach((b, i) => { b.addEventListener('click', () => setBudget(i)); b.addEventListener('mouseenter', () => setBudget(i)); });
+
+/* Hero: three new builds crossfade inside the arch; the tag follows. */
+const heroImgs = [...document.querySelectorAll('[data-hero] img')];
+function setHeroTag(i) {
+  if (!$('[data-tag-name]')) return;
+  const h = HERO[i];
+  $('[data-tag-name]').textContent = typeof h.name === 'string' ? h.name : h.name[lang];
+  $('[data-tag-price]').textContent = priceText(h.price, h.from);
+}
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!still) {
+  setInterval(() => {
+    if (document.hidden) return;
+    heroImgs[hIdx].classList.remove('is-on');
+    hIdx = (hIdx + 1) % heroImgs.length;
+    heroImgs[hIdx].classList.add('is-on');
+    setHeroTag(hIdx);
+  }, 6500);
+}
+
+/* New builds track. */
+const track = $('[data-track]');
+document.querySelectorAll('[data-scroll]').forEach(b => b.addEventListener('click', () => {
+  track.scrollBy({ left: +b.dataset.scroll * track.clientWidth * 0.6, behavior: still ? 'auto' : 'smooth' });
+}));
+
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -6% 0px' });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+document.querySelectorAll('.langs button').forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+let start = new URLSearchParams(location.search).get('lang');
+if (!L.hasOwnProperty(start)) { try { start = localStorage.getItem('avezor-lang'); } catch (e) {} }
+apply(L.hasOwnProperty(start) ? start : 'ru');
+</script>
+</body>
+</html>
